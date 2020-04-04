@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -34,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
     protected void loadFromNetwork () {
 
-        String url ="https://www.oamk.fi";
+        final EditText site = findViewById(R.id.site);
         final TextView netResult = findViewById(R.id.networkResult);
+        String url = String.valueOf(site.getText());
 
 // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        netResult.setText("Response is: "+ response.substring(0,500));
+                        netResult.setText(""+ response.substring(0,1000));
                     }
                 }, new Response.ErrorListener() {
             @Override
